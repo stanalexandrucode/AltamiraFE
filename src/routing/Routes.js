@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch} from 'react-router-dom';import {Route} from 'react-router-dom';
 import Home from "../component/Home";
-import AddTaskForm from "../component/AddTaskForm";
+import AddTaskForm from "../component/taskForm/AddTaskForm";
 
 const Routes = () => {
 
