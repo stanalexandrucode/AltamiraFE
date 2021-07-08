@@ -6,13 +6,16 @@ import {useState} from "react";
 import {useHistory} from 'react-router-dom';
 
 const AddTaskForm = () => {
-
-    const [typeTask, setTypeTask] = useState();
-    const [name, setName] = useState();
-    const [timeLimit, setTimeLimit] = useState();
-    const [estimatedTime, setEstimatedTime] = useState();
-
     const history = useHistory();
+
+    const [values, setValues] = useState({
+        typeTask: '', name: '', timeLimit: '', estimatedTime: ''
+    });
+    const set = name => {
+        return ({target: {value}}) => {
+            setValues(oldValues => ({...oldValues, [name]: value}));
+        }
+    };
 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -21,56 +24,76 @@ const AddTaskForm = () => {
     today = yyyy + '-' + mm + '-' + dd;
 
 
-    const handleAdd = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        let response = await axios({
-            method: 'post',
-            url: 'http://localhost:8080/task/add',
-            data: {tipTask: typeTask, name, durataLimita: timeLimit, durataEstimata: estimatedTime},
-        }).catch((err) => console.log('Error:', err));
-        if (response) {
-            history.push("/")
-        }
+
+            let response = await axios({
+                method: 'post',
+                url: 'http://localhost:8080/task/add',
+                data: {
+                    tipTask: values.typeTask,
+                    name: values.name,
+                    durataLimita: values.timeLimit,
+                    durataEstimata: values.estimatedTime
+                },
+            }).catch((err) => console.log('Error:', err));
+            if (response) {
+                history.push("/")
+            }
     }
+
+
     return (
         <>
             <div className="center" style={{marginTop: 120}}>
                 <div className="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                    <Form>
+                    <form onSubmit={onSubmit}>
                         <Form.Group controlId="exampleForm.ControlSelect1"
-                                    onChange={e => setTypeTask(e.target.value)}>
+                                    value={values.typeTask} onChange={set('typeTask')}>
                             <Form.Label>Tip Task</Form.Label>
-                            <Form.Control as="select"
-                                          type="text" required>
+                            <Form.Control
+                                as="select"
+                                type="text"
+                                required>
+                                <option value="">Select Type</option>
                                 <option>Work</option>
                                 <option>Home</option>
                                 <option>Hobby</option>
                             </Form.Control>
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword"
-                                    onChange={e => setName(e.target.value)}>
+                        <Form.Group
+                            controlId="formBasicPassword"
+                            required
+                            value={values.name} onChange={set('name')}>
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" placeholder="name" required/>
+                            <Form.Control
+                                type="text"
+                                placeholder="name"
+                                required/>
                         </Form.Group>
 
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <label>Time Limit</label>
                             <input
-                                onChange={e => setTimeLimit(e.target.value)}
+                                value={values.timeLimit} onChange={set('timeLimit')}
                                 className="form-control"
-                                type="date" id="dev_end_date"
+                                type="date"
+                                id="dev_end_date"
                                 min={today}
+                                required
                             />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Time Limit In Days</Form.Label>
+                            <Form.Label>Estimated Time In Days</Form.Label>
                             <Form.Control
-                                onChange={e => setEstimatedTime(e.target.value)}
-                                type="number" min="0" placeholder="Time Limit"/>
+                                value={values.estimatedTime} onChange={set('estimatedTime')}
+                                type="number"
+                                required
+                                min="1"
+                                placeholder="Time Limit"/>
                         </Form.Group>
-
-                        <button className="btn btn-primary" onClick={e => handleAdd(e)}>Save task</button>
-                    </Form>
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </>

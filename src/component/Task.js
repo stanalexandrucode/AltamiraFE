@@ -45,7 +45,7 @@ const Task = ({id, tipTask, name, durataLimita, durataEstimata, handleDelete, co
                         </Link>}
                 </td>
                 <td style={typeColorStyle()}>{tipTask}</td>
-                <td style={{backgroundColor: difference <= 0 && !completed ? "red" : ""}}>{durataLimita}</td>
+                <td style={{backgroundColor: difference <= 1 && !completed ? "red" : ""}}>{durataLimita}</td>
                 <td>{durataEstimata}</td>
                 <td>{difference}</td>
                 <td> {completed ? "done" : "ongoing"}  </td>

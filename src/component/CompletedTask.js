@@ -8,7 +8,7 @@ const CompletedTask = () => {
 
     const history = useHistory();
 
-    const handleUpdate = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
         let response = await axios({
             method: 'post',
@@ -26,13 +26,18 @@ const CompletedTask = () => {
     return (
         <div className="center" style={{marginTop: 120}}>
             <div className="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Time Spent on Task in Days</Form.Label>
-                    <Form.Control
-                        onChange={e => setNrOfDays(e.target.value)}
-                        type="number" min="0"/>
-                    <button className="btn btn-primary" onClick={e => handleUpdate(e)}>Save</button>
-                </Form.Group>
+                <form onSubmit={onSubmit}>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Time Spent on Task in Days</Form.Label>
+                        <Form.Control
+                            onChange={e => setNrOfDays(e.target.value)}
+                            type="number"
+                            required
+                            min="1"
+                        />
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </Form.Group>
+                </form>
             </div>
         </div>
 
