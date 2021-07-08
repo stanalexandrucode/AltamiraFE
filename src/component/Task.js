@@ -10,7 +10,8 @@ const Task = ({id, tipTask, name, durataLimita, durataEstimata, handleDelete, co
     }
 
 
-    let today = new Date();
+    let today: Date;
+    today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     let yyyy = today.getFullYear()
@@ -20,22 +21,37 @@ const Task = ({id, tipTask, name, durataLimita, durataEstimata, handleDelete, co
         b = new Date(durataLimita),
         difference = dateDiffInDays(a, b);
 
+    const getTypeName = () => {
+        if (tipTask === "Work") return "#00A170";
+        if (tipTask === "Home") return "#9BB7D4";
+        if (tipTask === "Hobby") return "#F7CAC9";
+    }
+
+    const typeColorStyle = () => {
+        const myStyle = {
+            backgroundColor: getTypeName()
+        };
+        return myStyle;
+    }
+
 
     return (
         <>
             <tr>
                 <td>
-                    <Link to={`/task/${id}`}>
-                        <span>{name}</span>
-                    </Link>
+                    {completed ? name :
+                        <Link to={`/task/${id}`}>
+                            <span>{name}</span>
+                        </Link>}
                 </td>
-                <td>{tipTask}</td>
-                <td>{durataLimita}</td>
+                <td style={typeColorStyle()}>{tipTask}</td>
+                <td style={{backgroundColor: difference <= 0 && !completed ? "red" : ""}}>{durataLimita}</td>
                 <td>{durataEstimata}</td>
                 <td>{difference}</td>
                 <td> {completed ? "done" : "ongoing"}  </td>
                 <td>
-                    <button disabled={completed} className={`btn btn-${completed ? "success" : "danger"}`} onClick={() => handleDelete(id)}> {completed ? "Completed" : "Delete"}
+                    <button disabled={completed} className={`btn btn-${completed ? "success" : "danger"}`}
+                            onClick={() => handleDelete(id)}> {completed ? "Completed" : "Delete"}
                     </button>
                 </td>
             </tr>

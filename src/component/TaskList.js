@@ -1,9 +1,21 @@
 import Task from "./Task";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useMemo} from "react";
 import axios from "axios";
+import {Table} from "react-bootstrap";
+import useSortableData from "./UseSortableData";
 
 const TaskList = () => {
     const [tasksList, setTasksList] = useState([])
+    const {items, requestSort, sortConfig, isSorted} = useSortableData(tasksList);
+
+
+    const getClassNamesFor = (name) => {
+        if (!sortConfig) {
+            return;
+        }
+        return sortConfig.key === name ? sortConfig.direction : undefined;
+    };
+
 
     const fetchData = async () => {
         let url = "http://localhost:8080/task/getAll";
@@ -19,6 +31,7 @@ const TaskList = () => {
         await fetchData().then(r => setTasksList(r));
     };
 
+
     const handleDelete = async (id) => {
         let taskListFilter = tasksList.filter((task) => task.id !== id);
         await axios({
@@ -28,24 +41,44 @@ const TaskList = () => {
         setTasksList(taskListFilter);
     }
 
-
     useEffect(() => {
         showTasks();
     }, []);
 
     return (
         <>
-            {tasksList.map((item) => {
-                return (
-                    <tbody key={item.id} className="table-primary">
-                    <Task
-                        {...item}
-                        handleDelete={handleDelete}
-                    />
-                    </tbody>
-                );
-            })}
+            <div className="addBtn">
+                <button
+                    onClick={() => requestSort('durataLimita')}
+                    className="btn btn-primary"
+                >Sort  { isSorted ? "Ascending" : "Descending"}
+                </button>
+
+            </div>
+            <Table striped bordered hover size="sm">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Tip Task</th>
+                    <th>Expired Time Limit</th>
+                    <th>Estimated Time</th>
+                    <th>Remaining Days</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                {items.map((item) => {
+                    return (
+                        <tbody key={item.id} className="table-primary">
+                        <Task
+                            {...item}
+                            handleDelete={handleDelete}
+                        />
+                        </tbody>
+                    );
+                })}
+            </Table>
         </>
-    );
+    )
+
 }
 export default TaskList;

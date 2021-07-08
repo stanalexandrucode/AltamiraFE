@@ -4,6 +4,13 @@
   "private": true,
   "dependencies": {
     "@material-ui/lab": "^4.0.0-alpha.59",
+    "@progress/kendo-drawing": "^1.10.1",
+    "@progress/kendo-licensing": "^1.1.4",
+    "@progress/kendo-react-dateinputs": "^4.7.0",
+    "@progress/kendo-react-dropdowns": "^4.7.0",
+    "@progress/kendo-react-form": "^4.7.0",
+    "@progress/kendo-react-inputs": "^4.7.0",
+    "@progress/kendo-react-intl": "^4.7.0",
     "@syncfusion/ej2-react-calendars": "^19.2.46",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
