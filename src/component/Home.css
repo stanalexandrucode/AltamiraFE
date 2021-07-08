@@ -1,0 +1,14 @@
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addBtn {
+    float: right;
+    margin-right: 6px;
+}
+
+.nameUser {
+    margin: 30px 40% 30px 50%;
+}
