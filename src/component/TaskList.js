@@ -1,5 +1,5 @@
 import Task from "./Task";
-import {useEffect, useState, useMemo} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {Table} from "react-bootstrap";
 import useSortableData from "./UseSortableData";
@@ -49,7 +49,7 @@ const TaskList = () => {
         <>
             <div className="addBtn">
                 <button
-                    onClick={() => requestSort('durataLimita')}
+                    onClick={() => requestSort('timeLimit')}
                     className="btn btn-primary"
                 >Sort  { isSorted ? "Ascending" : "Descending"}
                 </button>

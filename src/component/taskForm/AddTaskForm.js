@@ -31,10 +31,10 @@ const AddTaskForm = () => {
                 method: 'post',
                 url: 'http://localhost:8080/task/add',
                 data: {
-                    tipTask: values.typeTask,
+                    typeTask: values.typeTask,
                     name: values.name,
-                    durataLimita: values.timeLimit,
-                    durataEstimata: values.estimatedTime
+                    timeLimit: values.timeLimit,
+                    estimatedTime: values.estimatedTime
                 },
             }).catch((err) => console.log('Error:', err));
             if (response) {

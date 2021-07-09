@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const Task = ({id, tipTask, name, durataLimita, durataEstimata, handleDelete, completed}) => {
+const Task = ({id, typeTask, name, timeLimit, estimatedTime, handleDelete, completed}) => {
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
     function dateDiffInDays(a, b) {
@@ -18,13 +18,13 @@ const Task = ({id, tipTask, name, durataLimita, durataEstimata, handleDelete, co
     today = yyyy + '-' + mm + '-' + dd;
 
     const a = new Date(today),
-        b = new Date(durataLimita),
+        b = new Date(timeLimit),
         difference = dateDiffInDays(a, b);
 
     const getTypeName = () => {
-        if (tipTask === "Work") return "#00A170";
-        if (tipTask === "Home") return "#9BB7D4";
-        if (tipTask === "Hobby") return "#F7CAC9";
+        if (typeTask === "Work") return "#00A170";
+        if (typeTask === "Home") return "#9BB7D4";
+        if (typeTask === "Hobby") return "#F7CAC9";
     }
 
     const typeColorStyle = () => {
@@ -44,9 +44,9 @@ const Task = ({id, tipTask, name, durataLimita, durataEstimata, handleDelete, co
                             <span>{name}</span>
                         </Link>}
                 </td>
-                <td style={typeColorStyle()}>{tipTask}</td>
-                <td style={{backgroundColor: difference <= 1 && !completed ? "red" : ""}}>{durataLimita}</td>
-                <td>{durataEstimata}</td>
+                <td style={typeColorStyle()}>{typeTask}</td>
+                <td style={{backgroundColor: difference <= 1 && !completed ? "red" : ""}}>{timeLimit}</td>
+                <td>{estimatedTime}</td>
                 <td>{difference}</td>
                 <td> {completed ? "done" : "ongoing"}  </td>
                 <td>
