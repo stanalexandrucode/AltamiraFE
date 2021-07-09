@@ -1,6 +1,7 @@
 Homework Altamira
-Front end with REACT
-Back end with JAVA
+
+##Front end with REACT
+##Back end with JAVA
 
 ##[Back-end](https://github.com/stanalexandrucode/altamirabe) of the app.
 
