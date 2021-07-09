@@ -8,5 +8,5 @@ Homework Altamira
 
 -First page with sorting, add new task and a table with tasks
 
-![Table task](/img/taskFrom.png 'Task Table')
+![Table task](/img/firstpage.png 'Task Table')
 
