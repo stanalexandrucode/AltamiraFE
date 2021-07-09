@@ -10,3 +10,7 @@ Homework Altamira
 
 ![Table task](/img/firstpage.png 'Task Table')
 
+-Form for time spend form
+![Table time](/img/timeSpend.png 'Time Spend')
+
+
