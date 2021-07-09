@@ -3,7 +3,7 @@ Homework Altamira
 ##Front end with REACT
 ##Back end with JAVA
 
-##[Back-end](https://github.com/stanalexandrucode/altamirabe) of the app.
+##[Back-end](https://github.com/stanalexandrucode/altamirabe) REPO of the app.
 
 
 -First page with sorting, add new task and a table with tasks
