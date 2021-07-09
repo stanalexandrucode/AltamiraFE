@@ -2,9 +2,11 @@ Homework Altamira
 
 ##[Back-end](https://github.com/stanalexandrucode/altamirabe) of the app.
 
--form with validation
+-Form with validation
 
 ![Task form](/img/taskFrom.png 'Task Form')
 
+-First page with sorting, add new task and a table with tasks
 
+![Table task](/img/taskFrom.png 'Task Table')
 
