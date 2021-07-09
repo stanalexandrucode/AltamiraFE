@@ -4,7 +4,7 @@ Homework Altamira
 
 -form with validation
 
-![Task form](/img/taskForm.png 'Task Form')
+![Task form](/img/taskFrom.png 'Task Form')
 
 
 
