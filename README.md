@@ -19,4 +19,6 @@ Homework Altamira
 -Form for time spend form
 ![Table time](/img/timeSpend.png 'Time Spend')
 
+-Swagger documentation
+![Swagger](/img/swagger.png 'Swagger')
 
